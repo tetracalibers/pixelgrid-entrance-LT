@@ -617,11 +617,12 @@ afterやlastが指定されていないため、データ全体の中で前方�
     left: -2rem;
     top: 2rem;
   }
-  img.relay-get-next {
-    position: absolute;
-    bottom: 0;
-    right: -4rem;
-    width: 38rem;
+  .get-next-page__step {
+    height: 300px;
+    width: 40rem;
+    position: relative;
+    margin-top: -275px;
+    margin-left: 21rem;
   }
 </style>
 
@@ -629,7 +630,7 @@ afterやlastが指定されていないため、データ全体の中で前方�
 
 ## after === 直前のページのendCursor
 
-```graphql {all|2}
+```graphql {all|all|all|all|2}
 {
   songsPage(first: 2, after: "cursor:2") {
     edges {
@@ -649,10 +650,26 @@ afterやlastが指定されていないため、データ全体の中で前方�
 }
 ```
 
-<img src='/relay-cursor-pagination-get-next_transparent.png' class='-ml-12 relay-get-next' />
+<div class='get-next-page__step'>
+  <div v-if="$slidev.nav.clicks < 1">
+    <img src='/relay-cursor-pagination-get-next_step01.png' class='-ml-12' />
+  </div>
+  
+  <div v-if="$slidev.nav.clicks === 1">
+    <img src='/relay-cursor-pagination-get-next_step02.png' class='-ml-12' />
+  </div>
+  
+  <div v-if="$slidev.nav.clicks === 2">
+    <img src='/relay-cursor-pagination-get-next_step03.png' class='-ml-12' />
+  </div>
+  
+  <div v-if="$slidev.nav.clicks > 2">
+    <img src='/relay-cursor-pagination-get-next_step04.png' class='-ml-12' />
+  </div>
+</div>
 
 <!--
-次のページを取得する場合は、直前のページの最後のデータより後の、最初の数件を取得したいため、（クリック）afterに直前のデータのcursorを指定します。
+次のページを取得する場合は、今のページの（クリック）最後のデータ（クリック）より後の、（クリック）最初の数件を取得したいため、（クリック）afterに直前のデータのcursorを指定します。
 -->
 
 ---
