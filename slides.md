@@ -543,6 +543,8 @@ layout: center
 -->
 
 ---
+clicks: 4
+---
 
 # get First Page
 
@@ -555,14 +557,16 @@ layout: center
     left: -2rem;
     top: 2rem;
   }
-  img.relay-get-first {
-    position: absolute;
-    bottom: 0;
-    right: -4rem;
+  .get-first-step {
+    height: 300px;
+    width: 42rem;
+    position: relative;
+    margin-top: -275px;
+    margin-left: 19rem;
   }
 </style>
 
-```graphql {all|2}
+```graphql {all|2|all}
 {
   songsPage(first: 2) {
     edges {
@@ -582,7 +586,19 @@ layout: center
 }
 ```
 
-<img src='/relay-cursor-pagination-get-first_transparent.png' class='w-2xl -ml-12 relay-get-first' />
+<div class='get-first-step'>
+  <div v-if="$slidev.nav.clicks < 3">
+    <img src='/relay-cursor-pagination-get-first_step01.png' class='-ml-12' />
+  </div>
+  
+  <div v-if="$slidev.nav.clicks === 3">
+    <img src='/relay-cursor-pagination-get-first_step02.png' class='-ml-12' />
+  </div>
+  
+  <div v-if="$slidev.nav.clicks === 4">
+    <img src='/relay-cursor-pagination-get-first_step03.png' class='-ml-12' />
+  </div>
+</div>
 
 <!--
 まず、1ページ目を取得する場合は（クリック）firstのみを指定します。
