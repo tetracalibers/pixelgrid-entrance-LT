@@ -449,9 +449,9 @@ layout: two-cols
     position: relative;
   }
   .edge-tree {
-    width: 37rem;
+    width: 36rem;
     margin-top: 20%;
-    margin-left: -10%;
+    margin-left: -12.5%;
   }
   .relay-response-example img,
   .edge-tree img {
@@ -466,12 +466,55 @@ layout: two-cols
 
 ::right::
 
-<div class='relay-response-example rounded-lg'><img src='/relay-response-example.png' /></div>
+<style>
+  .slidev-page-12 .slidev-code-wrapper {
+    width: fit-content;
+    margin-top: -2rem !important;
+    margin-left: 6.5rem !important;
+  }
+  .slidev-page-12 .language-json .token.boolean {
+    color: cornflowerblue !important;
+  }
+  .slidev-page-12 .language-json .token.property {
+    color: pink !important;
+  }
+</style>
+
+```json {all|7-10|6|5-11|4-19|20-25}
+{
+  "data": {
+    "songsPage": {
+      "edges": [
+        {
+          "cursor": "4",
+          "node": {
+            "artistName": "Whiteberry",
+            "songName": "夏祭り"
+          }
+        },
+        {
+          "cursor": "5",
+          "node": {
+            "artistName": "UNISON SQUARE GARDEN",
+            "songName": "harmonized finale"
+          }
+        }
+      ],
+      "pageInfo": {
+        "startCursor": "4",
+        "endCursor": "5",
+        "hasNextPage": true,
+        "hasPreviousPage": false
+      }
+    }
+  }
+}
+```
 
 <!--
 グラフにおいて点はnode、結ぶ線はedgeと呼ばれ、Relay-styleページネーションの場合、nodeはデータストアにある一つのデータを表し、edgeは、データストアのこの位置からこのデータを持ってくる、という操作を表しているようにも見えます。
 
-そこで、取り出したデータとその位置情報であるcursorをセットにしたものを、edgeという名前をつけて返します。
+そこで、（クリック）取り出したデータと（クリック）その位置情報であるcursorを（クリック）セットにしたものを、（クリック）edgeという名前をつけて返します。
 
 Relay-styleでは、データのラッパーであるedgesと一緒に、次のリクエストを決めるメタ情報をpageInfoとして返します。
 
