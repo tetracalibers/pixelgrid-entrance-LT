@@ -9,6 +9,7 @@ fonts:
   mono: 'IBM Plex Mono'
 drawings:
   persist: false
+  syncAll: false
 layout: intro
 ---
 
@@ -146,7 +147,7 @@ layout: two-cols
 <h3 class="text-center">REST API Request</h3>
 
 ```url
-https://ex.app/api/song?id=5&fields=artistName,songName
+https://ex.app/api/song?id=5
 ```
 
 <h3 class="text-center mt-5">GraphQL Query</h3>
@@ -178,13 +179,17 @@ https://ex.app/api/song?id=5&fields=artistName,songName
 
 GraphQLはレスポンスのデータ構造をそのまま指定するような記法でサーバーとのデータのやり取りを実現する、API構築技術です。
 
-例えば、idが5の楽曲情報のうち、曲名とアーティスト名のみを取得したいとしましょう。
+（描画準備）
 
-GraphQL対応サーバーでは、idに応じた全データを返す処理を実装するだけで、リクエスト通りの部分取得が実現できます。
+何が欲しいかを明確に示してリクエストを送るGraphQLでは、REST APIのようにデータ全体を返すことはありません。
 
-URLパラメータによってレスポンスを分岐させたり、エンドポイントを増やしたりする必要はありません。
+（続けて描画準備）
 
-同じエンドポイントから必要なデータだけを好きな組み合わせで取得できることは、コンポーネント分割を行う上でも嬉しい仕様ではないでしょうか。
+サーバー側でデータ全体を返す処理を実装するだけで、リクエスト通りの部分取得が実現できます。
+
+同じエンドポイントから必要なデータだけを好きな組み合わせで取得できる。
+
+これはコンポーネント分割を行う上でも嬉しい仕様ではないでしょうか。
 -->
 
 ---
@@ -270,6 +275,9 @@ layout: two-cols
     margin-left: -8rem;
     margin-top: 13rem;
   }
+  .offset-pagination__img.after {
+    margin-top: -16rem;
+  }
 </style>
 
 # Offset Pagination
@@ -300,12 +308,20 @@ layout: two-cols
 
 ::right::
 
-<img src='/offset-pagination-demerit_tsp.png' class='offset-pagination__img' />
+<img src='/offset-pagination-demerit-before.png' class='offset-pagination__img' v-click-hide />
+
+<img src='/offset-pagination-demerit_tsp.png' class='offset-pagination__img after' v-after />
 
 <!--
 ページ送りを実現するAPIは、欲しいページに入るまでのデータの数だけ読み飛ばす方式で実装されます。
 
-しかし、次のページをリクエストするまでにデータが追加されると、当初予想していたページ分割とはズレが生じてしまうのが難点です。
+1ページに2つずつ表示する場合、ページ2を取得したい時はoffsetを2として、2つ読み飛ばして取得することになります。
+
+しかし、次のページをリクエストするまでにデータが追加されると、
+
+（右矢印クリック）
+
+当初予想していたページ分割とはズレが生じてしまうのが難点です。
 -->
 
 ---
@@ -364,12 +380,12 @@ layout: two-cols
 # Cursor Pagination
 
 <div class="pl-8 mt-4 mb-8">
-  <div class='summary'>「このデータまでは読んだ」という一意な栞（絶対位置）を決め、</div>
+  <div class='summary'>「このデータまでは読んだ」という一意な<samp>Cursor</samp>（絶対位置）を決め、</div>
   <div class='summary mt-4'>次のリクエストを決めるための<span class='meta'>メタ情報</span>を渡す</div>
   <ul class='mt-6 ballon meta'>
-    <li>どこからどこまで読んだか（<samp>startCursor</samp>と<samp>endCursor</samp>）</li>
-    <li>次のページはあるか（<samp>hasNextPage</samp>）</li>
-    <li>前のページはあるか（<samp>hasPreviousPage</samp>）</li>
+    <li v-click="1">どこからどこまで読んだか（<samp>startCursor</samp>と<samp>endCursor</samp>）</li>
+    <li v-click="2">次のページはあるか（<samp>hasNextPage</samp>）</li>
+    <li v-click="2">前のページはあるか（<samp>hasPreviousPage</samp>）</li>
   </ul>
   <ul class="mt-12 list-none">
     <li>
@@ -412,7 +428,7 @@ layout: center
 <!--
 GraphQLによるCursor式ページネーション実装として有名なのが、Relayスタイルと呼ばれるものです。
 
-せっかくのGraphQL実装ということで、Relay式ページネーションAPIのレスポンスを、グラフ、つまり点と線による関係図で見てみましょう。
+せっかくのGraphQL実装ということで、そのレスポンスデータを、グラフ、つまり点と線による関係図で見てみましょう。
 -->
 
 ---
