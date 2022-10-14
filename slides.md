@@ -683,11 +683,12 @@ afterやlastが指定されていないため、データ全体の中で前方�
     left: -2rem;
     top: 2rem;
   }
-  img.relay-get-previous {
-    position: absolute;
-    bottom: 0;
-    right: -4rem;
-    width: 38rem;
+  .get-prev-page__step {
+    height: 300px;
+    width: 40rem;
+    position: relative;
+    margin-top: -275px;
+    margin-left: 21rem;
   }
 </style>
 
@@ -695,7 +696,7 @@ afterやlastが指定されていないため、データ全体の中で前方�
 
 ## before === 直後のページのstartCursor
 
-```graphql {all|2|all}
+```graphql {all|all|all|all|2|all}
 {
   songsPage(last: 2, before: "cursor:5") {
     edges {
@@ -715,10 +716,26 @@ afterやlastが指定されていないため、データ全体の中で前方�
 }
 ```
 
-<img src='/relay-cursor-pagination-get-previous_transparent.png' class='-ml-12 relay-get-previous' />
+<div class='get-prev-page__step'>
+  <div v-if="$slidev.nav.clicks < 1">
+    <img src='/relay-cursor-pagination-get-prev_step01.png' class='-ml-12' />
+  </div>
+  
+  <div v-if="$slidev.nav.clicks === 1">
+    <img src='/relay-cursor-pagination-get-prev_step02.png' class='-ml-12' />
+  </div>
+  
+  <div v-if="$slidev.nav.clicks === 2">
+    <img src='/relay-cursor-pagination-get-prev_step03.png' class='-ml-12' />
+  </div>
+  
+  <div v-if="$slidev.nav.clicks > 2">
+    <img src='/relay-cursor-pagination-get-prev_step04.png' class='-ml-12' />
+  </div>
+</div>
 
 <!--
-反対に、前のページを取得する場合は、直後のページの最初のデータより前の、最後の数件を取得したいため、（クリック）beforeとlastを使うことになります。
+反対に、前のページを取得する場合は、今のページの（クリック）最初のデータ（クリック）より前の、（クリック）最後の数件を取得したいため、（クリック）beforeとlastを使うことになります。
 
 （クリック）このような仕組みのため、cursor式のページネーションでは、直前のページと直後のページに移動する手段しか提供できません。
 -->
