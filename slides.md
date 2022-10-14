@@ -240,6 +240,7 @@ GraphQLはレスポンスのデータ構造をそのまま指定するような�
 
 ---
 layout: two-cols
+clicks: 1
 ---
 
 <style>
@@ -275,9 +276,6 @@ layout: two-cols
     margin-left: -8rem;
     margin-top: 13rem;
   }
-  .offset-pagination__img.after {
-    margin-top: -16rem;
-  }
 </style>
 
 # Offset Pagination
@@ -308,9 +306,9 @@ layout: two-cols
 
 ::right::
 
-<img src='/offset-pagination-demerit-before.png' class='offset-pagination__img' v-click-hide />
+<img src='/offset-pagination-demerit-before.png' class='offset-pagination__img' v-if="$slidev.nav.clicks < 1" />
 
-<img src='/offset-pagination-demerit_tsp.png' class='offset-pagination__img after' v-after />
+<img src='/offset-pagination-demerit_tsp.png' class='offset-pagination__img' v-if="$slidev.nav.clicks === 1" />
 
 <!--
 ページ送りを実現するAPIは、欲しいページに入るまでのデータの数だけ読み飛ばす方式で実装されます。
@@ -853,9 +851,7 @@ layout: center
 layout: center
 ---
 
-# Usability is derived from specifications
-
-<h2 class="text-center">ユーザビリティは仕様から導く</h2>
+# Where Usability Comes From
 
 <!--
 そのUIを採用することでどんな使いやすさが生まれるのか、それはユーザに問うのではなく、アプリケーションの仕様に問うべきこと。
