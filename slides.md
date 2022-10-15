@@ -130,6 +130,15 @@ layout: two-cols
 
 # GraphQLとREST
 
+<style>
+  .language-json .token.boolean {
+    color: cornflowerblue !important;
+  }
+  .language-json .token.property {
+    color: pink !important;
+  }
+</style>
+
 <samp>artistName</samp>と<samp>songName</samp>だけ欲しい…
 
 |                                                    |                             |
@@ -152,7 +161,7 @@ https://ex.app/api/song?id=5
 
 <h3 class="text-center mt-5">GraphQL Query</h3>
 
-```graphql
+```graphql {0|2-5|3-4}
 {
   song(id: 5) {
     artistName
@@ -163,7 +172,7 @@ https://ex.app/api/song?id=5
 
 <h3 class="text-center mt-5">Response</h3>
 
-```js
+```json {3-6|4-5}
 {
   "data": {
     "song": {
@@ -177,15 +186,10 @@ https://ex.app/api/song?id=5
 <!--
 ページネーションのお話に入る前に、REST APIとGraphQLとの違いを簡単にまとめてみます。
 
-GraphQLはレスポンスのデータ構造をそのまま指定するような記法でサーバーとのデータのやり取りを実現する、API構築技術です。
+GraphQLは、レスポンスのデータ構造を（クリック）そのまま指定するような記法でサーバーとのデータのやり取りを実現する、API構築技術です。
 
-（描画準備）
-
-何が欲しいかを明確に示してリクエストを送るGraphQLでは、REST APIのようにデータ全体を返すことはありません。
-
-（続けて描画準備）
-
-サーバー側でデータ全体を返す処理を実装するだけで、リクエスト通りの部分取得が実現できます。
+何が欲しいかを明確に示してリクエストを送るGraphQLでは、
+サーバー側でデータ全体を返す処理を実装するだけで、（クリック）リクエスト通りの（クリック）部分取得が実現できます。
 
 同じエンドポイントから必要なデータだけを好きな組み合わせで取得できる。
 
@@ -315,11 +319,7 @@ clicks: 1
 
 1ページに2つずつ表示する場合、ページ2を取得したい時はoffsetを2として、2つ読み飛ばして取得することになります。
 
-しかし、次のページをリクエストするまでにデータが追加されると、
-
-（右矢印クリック）
-
-当初予想していたページ分割とはズレが生じてしまうのが難点です。
+しかし、次のページをリクエストするまでにデータが追加されると、（クリック）当初予想していたページ分割とはズレが生じてしまうのが難点です。
 -->
 
 ---
@@ -412,7 +412,7 @@ clicks: 1
 
 どんどん続きを読むタイプのページネーションは、「ここまで読んだ」という情報を、データの数ではなく各データに紐付けたcursorという識別子で表すことで、途中でデータが追加されても影響を受けないように実装されます。
 
-そして、データと共にcursor範囲や前後のデータの有無を返すことで、続けて前後のページをリクエストすることを容易にします。
+そして、データと共に（クリック）cursor範囲や（クリック）前後のデータの有無を返すことで、続けて前後のページをリクエストすることを容易にします。
 -->
 
 ---
@@ -470,10 +470,10 @@ layout: two-cols
     margin-top: -2rem !important;
     margin-left: 6.5rem !important;
   }
-  .slidev-page-12 .language-json .token.boolean {
+  .language-json .token.boolean {
     color: cornflowerblue !important;
   }
-  .slidev-page-12 .language-json .token.property {
+  .language-json .token.property {
     color: pink !important;
   }
 </style>
