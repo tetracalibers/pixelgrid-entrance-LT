@@ -740,121 +740,66 @@ afterやlastが指定されていないため、データ全体の中で前方�
 
 ---
 layout: center
----
-
-# 改めてページネーションAPIを比較
-
-<!--
-結局、ページネーションはどうあるべきなのでしょうか。
--->
-
+clicks: 1
 ---
 
 <style>
-  h1.pagination-kind {
-    text-align: right;
-    margin-bottom: 1rem !important;
+  .mark {
+    font-size: 1.5rem;
+    background: linear-gradient(rgba(255, 255, 255, 0) 30%, #66ccff80 90%);
   }
-  .with-icon {
-    display: inline-flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5em;
+  .font-serif {
+    font-family: 'ほのか新丸ゴシック' !important;
   }
-  .merit {
-    color: #F06292;
-  }
-  .demerit {
-    color: #29B6F6;
-    display: inline-flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5em;
-  }
-  .usecase {
+  .pagination-pattern {
+    font-size: 0.8em;
+    width: 100%;
     color: #607D8B;
+    background-color: #66ccff30;
+    padding: 1rem;
+    border-radius: 2rem;
   }
-  .summary {
-    font-size: 1.25em;
-    color: #607D8B;
-  }
-  ul.pagination-kind {
-    list-style: none !important;
+  .right-side {
+    width: 50%;
+    margin-left: 50%;
   }
 </style>
 
-<h1 class='pagination-kind'>リアルタイム性とページネーション</h1>
+<h1 class='text-center'>Where Usability Comes From</h1>
 
-<div>
-  <h2>Offset Pagination</h2>
-  <div class="pl-8 mt-4">
-    <div class='summary'>読み飛ばす数（相対位置）で管理</div>
-    <ul class="mt-4 pagination-kind">
-      <li>
-        <div class='merit with-icon'>
-          <icon-park-outline-good-two />
-          <span>任意のページのデータを得るクエリ（エンドポイント）を把握できる</span>
-        </div>
-      </li>
-      <li>
-        <div class="demerit with-icon">
-          <icon-park-outline-bad-two />
-          <span>新たに追加されたデータがあればそのデータの個数分ずれる</span>
-        </div>
-      </li>
-      <li>
-        <div class="with-icon usecase">
-          <heroicons-solid-arrow-right />
-          <span>ページ送り（追加頻度が少なく、位置を覚えやすい場合）</span>
-        </div>
-      </li>
-    </ul>
+<div 
+  class="text-center flex flex-col gap-4" 
+  v-if="$slidev.nav.clicks === 1"
+  v-motion
+  :initial="{ opacity: 0, scale: 0 }"
+  :enter="{ opacity: 1, scale: 1 }"
+  :duration="100"
+>
+  <div class='font-serif'>ページネーションの場合は、</div>
+  <div class='inline-flex gap-1 justify-center items-end font-serif'>
+    <span class='mark'>リアルタイム性</span>
+    <span>と</span>
+    <span class='mark'>ユーザの動き</span>
+    <span>が一つの鍵</span>
   </div>
-</div>
-
-<div class="mt-8">
-  <h2>Cursor Pagination</h2>
-  <div class="pl-8 mt-4">
-    <div class='summary'>「このデータまでは読んだ」という一意な栞（絶対位置）で管理</div>
-    <ul class="mt-4 pagination-kind">
-      <li>
-        <div class="merit with-icon">
-          <icon-park-outline-good-two />
-          <span>新たに追加されたデータがあっても正しく続きを取得できる</span>
-        </div>
-      </li>
-      <li>
-        <div class="demerit with-icon">
-          <icon-park-outline-bad-two />
-          <span>直前のページ、直後のページの情報しかわからない</span>
-        </div>
-      </li>
-      <li>
-        <div class="with-icon usecase">
-          <heroicons-solid-arrow-right />
-          <span>無限スクロール、Moreボタン（頻繁に追加され位置が変動する場合）</span>
-        </div>
-      </li>
-    </ul>
-  </div>
+  <ul class='list-none pagination-pattern text-left mt-4'>
+    <li>
+      <div>データの位置変動が低頻度 + ユーザが重要視するデータがある</div>
+      <div class='right-side'>=> ページ送り（再検索しやすい）</div>
+    </li>
+    <li>
+      <div>データの位置変動が高頻度 + 流し見中心</div>
+      <div class='right-side'>=> スクロール（移動しやすい）</div>
+    </li>
+  </ul>
 </div>
 
 <!--
-1日に一回更新されるようなブログやショッピングサイトなどでは、offset式のページネーションを採用し、ユーザが大まかな位置を把握できた方がいいでしょう。
+ここまで、詳しい実装コードの解説には及びませんでしたが、ざっくりとページネーションAPIのイメージをお伝えしました。
 
-しかし、SNSのタイムラインが、ページ送り式のページネーションを採用したとしたら悪夢です。
+（クリック）
 
-どんどん投稿が増える以上、どのページにあったかを覚えておく価値はありませんし、ボタンを押すのが億劫なだけです。
--->
+そのUIを採用することでどんな使いやすさが生まれるのか、それはユーザ視点に立って判断する意識だけでは導き出せず、Webの仕組みへの理解が必要不可欠です。
 
----
-layout: center
----
-
-# Where Usability Comes From
-
-<!--
-そのUIを採用することでどんな使いやすさが生まれるのか、それはユーザに問うのではなく、アプリケーションの仕様に問うべきこと。
-
-トレンドや新しいテクノロジーに無闇に踊らされず、ユーザ視点に立ったフロントエンド開発を実現できるよう、日々精進していきたいと思います。
+そのための勉学だけでなく、こうして仕組みを視覚化して発信する活動も、積極的に続けていきたいと思います。
 -->
