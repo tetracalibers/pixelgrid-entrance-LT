@@ -317,11 +317,13 @@ clicks: 1
 <!--
 ページ送りを実現するAPIは、欲しいページに入るまでのデータの数だけ読み飛ばす方式で実装されます。
 
-1ページに2つずつ表示する場合、ページ2を取得したい時はoffsetを2として、2つ読み飛ばして取得することになります。
+1ページにデータを2つずつ表示する場合、2ページ目を取得したい時はoffsetを2として、2つ読み飛ばして取得することになります。
 
 しかし、次のページをリクエストするまでにデータが追加されると、（クリック）当初予想していたページ分割とはズレが生じてしまうのが難点です。
 -->
 
+---
+clicks: 2
 ---
 
 <style>
@@ -514,7 +516,7 @@ layout: two-cols
 
 そこで、（クリック）取り出したデータと（クリック）その位置情報であるcursorを（クリック）セットにしたものを、（クリック）edgeという名前をつけて返します。
 
-Relay-styleでは、データのラッパーであるedgesと一緒に、次のリクエストを決めるメタ情報をpageInfoとして返します。
+Relay-styleでは、データのラッパーであるedgesと一緒に、（クリック）次のリクエストを決めるメタ情報をpageInfoとして返します。
 
 そして、このpageInfoをもとに、次のリクエストをどう決めるのかがこのAPIの肝です。
 -->
@@ -541,7 +543,7 @@ layout: center
 -->
 
 ---
-clicks: 4
+clicks: 3
 ---
 
 # get First Page
@@ -564,7 +566,7 @@ clicks: 4
   }
 </style>
 
-```graphql {all|2|all}
+```graphql {all|2}
 {
   songsPage(first: 2) {
     edges {
@@ -585,15 +587,15 @@ clicks: 4
 ```
 
 <div class='get-first-step'>
-  <div v-if="$slidev.nav.clicks < 3">
+  <div v-if="$slidev.nav.clicks < 2">
     <img src='/relay-cursor-pagination-get-first_step01.png' class='-ml-12' />
   </div>
   
-  <div v-if="$slidev.nav.clicks === 3">
+  <div v-if="$slidev.nav.clicks === 2">
     <img src='/relay-cursor-pagination-get-first_step02.png' class='-ml-12' />
   </div>
   
-  <div v-if="$slidev.nav.clicks === 4">
+  <div v-if="$slidev.nav.clicks === 3">
     <img src='/relay-cursor-pagination-get-first_step03.png' class='-ml-12' />
   </div>
 </div>
@@ -601,7 +603,7 @@ clicks: 4
 <!--
 まず、1ページ目を取得する場合は（クリック）firstのみを指定します。
 
-afterやlastが指定されていないため、データ全体の中で前方からfirstの値分、データを取り出すことになります。
+afterやlastが指定されていないため、（クリック）データ全体の中で前方から（クリック）firstの値分、データを取り出すことになります。
 -->
 
 ---
