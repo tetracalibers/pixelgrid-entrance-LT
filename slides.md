@@ -87,8 +87,59 @@ GeoGebraで図解を作成し、それを印刷して紙に切り貼りしてい
 趣味はカラオケで、十八番はJUDY AND MARYです。
 
 曲別にシャープやフラットを微調整する人間なので、iTunes APIと連携させた記録アプリまでつくりました。
+-->
 
-バックエンドのAPIはLaravelで書いていましたが、現在Nest.jsに移植中です。
+---
+
+<style>
+  .logo-group__label {
+    font-size: 1.5rem;
+  }
+  .logo-group {
+    width: 100%;
+  }
+  .tech-logo {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    opacity: .8;
+  }
+</style>
+
+# 最近よく触る技術
+
+<ul class="list-none">
+  <li class='flex items-center mt-4'>
+    <div class='logo-group__label'>language</div>
+    <div class='flex justify-evenly logo-group'>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" class="tech-logo"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain-wordmark.svg" class="tech-logo" />
+    </div>
+  </li>
+  
+  <li class='flex items-center mt-4'>
+    <div class='logo-group__label'>backend</div>
+    <div class='flex justify-evenly logo-group'>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg" class="tech-logo" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain-wordmark.svg" class="tech-logo" />
+    </div>
+  </li>
+  
+  <li class='flex items-center mt-4'>
+    <div class='logo-group__label'>frontend</div>
+    <div class='flex justify-evenly logo-group'>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original-wordmark.svg" class="tech-logo" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" class="tech-logo" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original-wordmark.svg" class="tech-logo" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original-wordmark.svg" class="tech-logo" />
+    </div>
+  </li>
+</ul>
+
+<div class="text-center mt-12">このスライドは<samp>slidev</samp>製（<samp>Vue + Markdown</samp>）</div>
+
+<!--
+カラオケに行けない日は四六時中プログラミング、メインはReactとNest.jsですが、作りたいもの次第でいろいろ触ります。
 -->
 
 ---
@@ -467,7 +518,7 @@ layout: two-cols
 ::right::
 
 <style>
-  .slidev-page-12 .slidev-code-wrapper {
+  .slidev-page-13 .slidev-code-wrapper {
     width: fit-content;
     margin-top: -2rem !important;
     margin-left: 6.5rem !important;
@@ -549,10 +600,10 @@ clicks: 3
 # get First Page
 
 <style>
-  .slidev-page-14 h1 {
+  .slidev-page-15 h1 {
     text-align: center;
   }
-  .slidev-page-14 div.slidev-code-wrapper {
+  .slidev-page-15 div.slidev-code-wrapper {
     width: 19rem;
     left: -2rem;
     top: 2rem;
@@ -609,10 +660,10 @@ afterやlastが指定されていないため、（クリック）データ全�
 ---
 
 <style>
-  .slidev-page-15 h1, .slidev-page-15 h2 {
+  .slidev-page-16 h1, .slidev-page-16 h2 {
     text-align: center;
   }
-  .slidev-page-15 div.slidev-code-wrapper {
+  .slidev-page-16 div.slidev-code-wrapper {
     width: fit-content;
     left: -2rem;
     top: 2rem;
@@ -675,10 +726,10 @@ afterやlastが指定されていないため、（クリック）データ全�
 ---
 
 <style>
-  .slidev-page-16 h1, .slidev-page-16 h2 {
+  .slidev-page-17 h1, .slidev-page-17 h2 {
     text-align: center;
   }
-  .slidev-page-16 div.slidev-code-wrapper {
+  .slidev-page-17 div.slidev-code-wrapper {
     width: fit-content;
     left: -2rem;
     top: 2rem;
