@@ -4,7 +4,8 @@
   "scripts": {
     "build": "slidev build",
     "dev": "slidev --open",
-    "export": "slidev export"
+    "export": "slidev export",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@slidev/cli": "^0.36.5",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "@iconify-json/logos": "^1.1.16",
+    "gh-pages": "^4.0.0",
     "playwright-chromium": "^1.27.0"
   }
 }
