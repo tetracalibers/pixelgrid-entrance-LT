@@ -33,7 +33,7 @@ layout: intro
 
 ---
 layout: presenter
-presenterImage: '/tomixy.jpg'
+presenterImage: '/pixelgrid-entrance-LT/tomixy.jpg'
 ---
 
 <style>
