@@ -2,7 +2,7 @@
   "name": "pixel",
   "private": true,
   "scripts": {
-    "build": "slidev build",
+    "build": "slidev build --base /pixelgrid-entrance-LT",
     "dev": "slidev --open",
     "export": "slidev export",
     "deploy": "gh-pages -d dist"
